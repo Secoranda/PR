@@ -322,7 +322,7 @@ PUT METHOD:
 }
 ```
 
-4. ""DELETE"" METHOD
+4. **DELETE** METHOD
 
 
 Detele response:
@@ -342,7 +342,7 @@ Detele response:
 }
 ```
 
-5. ""PATCH"" METHOD
+5. **PATCH** METHOD
 
 Patch method was implemented but no parameters sent.
 Patch response:
