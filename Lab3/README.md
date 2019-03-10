@@ -8,5 +8,3 @@ Was used **FLURL** =>  a modern, fluent, asynchronous, testable, portable, buzzw
 1. **GET METHOD**
 Get's an image of SVG format:
 
-```c#
-GET METHOD:
