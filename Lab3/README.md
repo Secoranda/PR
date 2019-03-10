@@ -274,7 +274,9 @@ Get's an image of SVG format:
 ```
 </details>
 
-2. POST METHOD
+
+2. **POST** METHOD
+
 In case in the dictionary were inserted some values, form header will have some values.
 Dictonary was empty so no parameters added:
 ```
@@ -297,7 +299,9 @@ POST METHOD:
 }
 
 ```
-3. PUT METHOD
+3. **PUT** METHOD
+
+
 With PUT method were inserted some values in data field:
 ```
 PUT METHOD:
@@ -318,7 +322,9 @@ PUT METHOD:
 }
 ```
 
-4. DELETE METHOD
+4. ""DELETE"" METHOD
+
+
 Detele response:
 ```
 {
@@ -336,7 +342,8 @@ Detele response:
 }
 ```
 
-5. PATCH METHOD
+5. ""PATCH"" METHOD
+
 Patch method was implemented but no parameters sent.
 Patch response:
 ```
