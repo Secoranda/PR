@@ -278,7 +278,8 @@ Get's an image of SVG format:
 2. **POST** METHOD
 
 In case in the dictionary were inserted some values, form header will have some values.
-Dictonary was empty so no parameters added:
+Dictonary was empty so no parameters added.
+:
 ```
 
 POST METHOD:
@@ -364,5 +365,7 @@ PATCH METHOD:
 
 
 ```
-
+To POST/PUT/PATCH something specifically is needed to deal with HTTPCONTENT which involves other class.
+**FLURL** has other methods like: SendAsync, PostMultipartAsync, where you can add in each field particullary.
+FLURL [documentation](https://flurl.io/)
 **CODE** [Here](https://github.com/Secoranda/PR/blob/master/Lab3/Lab3/Program.cs)
