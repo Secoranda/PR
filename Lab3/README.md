@@ -368,4 +368,5 @@ PATCH METHOD:
 To POST/PUT/PATCH something specifically is needed to deal with HTTPCONTENT which involves other class.
 **FLURL** has other methods like: SendAsync, PostMultipartAsync, where you can add in each field particullary.
 FLURL [documentation](https://flurl.io/)
-**CODE** [Here](https://github.com/Secoranda/PR/blob/master/Lab3/Lab3/Program.cs)
+
+**LABORATORY CODE** [Here](https://github.com/Secoranda/PR/blob/master/Lab3/Lab3/Program.cs)
