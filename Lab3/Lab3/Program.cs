@@ -65,6 +65,7 @@ namespace Lab3
 
         static async Task<String> Patchmethod(FlurlClient client)
         {
+
             var patch = await client.Request("/patch").PatchAsync(null, default, HttpCompletionOption.ResponseContentRead).Result.Content.ReadAsStringAsync();
             return patch;
         }
