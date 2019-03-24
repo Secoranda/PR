@@ -2,9 +2,9 @@
 Use the SMTP/POP3 protocols to send/receive emails (bonus for attachments and html formatted text):
 
 ## Solution
-```
-Note: If you wanna run this code
-```
+
+*Note: If you wanna run this code, go [here](https://myaccount.google.com/lesssecureapps?pli=1) and turn the settings off!*
+
 
 In this laboratory work, was used [Mailkit](https://github.com/jstedfast/MailKit) (Open Source cross-platform .NET mail-client library that is based on MimeKit) and [Mimekit](http://www.mimekit.net/) (MimeKit is a popular high-performance MIME framework for .NET.)
 
@@ -68,8 +68,13 @@ using (var clientreceive = new Pop3Client())
 
 **Sending**
 
+![output](https://user-images.githubusercontent.com/24621285/54884481-5b861000-4e7a-11e9-8a57-5bda450f3892.PNG)
+
+
 
 
 **Receiving**
 
+![receive](https://user-images.githubusercontent.com/24621285/54884482-5b861000-4e7a-11e9-9c8b-c0988c241970.PNG)
 
+*Note: A similar project you can find [here](https://dotnetcoretutorials.com/2017/11/02/using-mailkit-send-receive-email-asp-net-core/)*
