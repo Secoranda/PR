@@ -69,6 +69,7 @@ A easy way, is to send a message and once we'll receive it back we'll mean than 
 On client part that means to test a port. As mentioned we can just send a message and wait it back,
 or other option is to use UdpClient, set a receive timeout on the underlying socket, make a connection to that remote server/port, Send some small message (byte[] !) and call Receive.
 This aproach will have same result.
+Also, to avoid any issues was used try catch blocks.
 
 I'm still dealing with server part. Have some issues with Socket. 
 
