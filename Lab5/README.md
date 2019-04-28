@@ -1,8 +1,8 @@
 # Laboratory work NR5.
 
 ## Sockets. TCP/IP and UDP Protocols
-Theory: *TCP – is for connection orientated applications. It has built in error checking and will re transmit missing packets. 
-UDP – is for connection less applications. It has no has built in error checking and will not re transmit missing packets.*
+Theory: *TCP –  It has built in error checking and will re transmit missing packets. 
+UDP – It has no has built in error checking and will not re transmit missing packets.*
 
 Was done a chat application based on sending and receiving messages via TCP/IP. So, we have a server and clients which communicate.
 To get connected with the server, each user should know and enter the right IP and Port. 
