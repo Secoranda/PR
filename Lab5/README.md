@@ -71,6 +71,7 @@ or other option is to use UdpClient, set a receive timeout on the underlying soc
 This aproach will have same result.
 
 I'm still dealing with server part. Have some issues with Socket. 
+
 P.S. Is not that easy to integrate 2 protocols...
 
 
