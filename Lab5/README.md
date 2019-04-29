@@ -114,5 +114,5 @@ Also, to avoid any issues was used try catch blocks.
 ![image](https://user-images.githubusercontent.com/24621285/56890799-2e350f00-6a83-11e9-8255-e42548ff4548.png)
 
 These are still some issues with socket permissions.
-
+Still figuring out...
 
