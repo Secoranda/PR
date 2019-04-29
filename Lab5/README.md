@@ -65,14 +65,54 @@ To deal with data, was used MemoryStream. So, we keep all data in MemoryStream a
 ```
 
 All project is based on TCP/IP. However, we have a class UDPSocket which deals with connections more or less.
-A easy way, is to send a message and once we'll receive it back we'll mean than is connected.
+Another approach is function ConnectionCheck(). They have the same logic.
+We send a message and once we'll receive it back we'll mean than is connected.
 On client part that means to test a port. As mentioned we can just send a message and wait it back,
 or other option is to use UdpClient, set a receive timeout on the underlying socket, make a connection to that remote server/port, Send some small message (byte[] !) and call Receive.
 This aproach will have same result.
+
+```c#
+ public void CheckConnection(IPAddress address, int port)
+        {
+            Socket _socket = null;
+            try
+            {
+                udpClient = new UdpClient(port);
+                _socket = udpClient.Client;
+                _socket.SetSocketOption(SocketOptionLevel.Socket,SocketOptionName.Broadcast, 1);
+                _socket.ReceiveTimeout = 5000;
+                _socket.Connect(address, port);
+                udpClient.Connect(address, port);
+                IPEndPoint RemoteIpEndPoint = new IPEndPoint(address, port);
+                Byte[] sendBytes = Encoding.ASCII.GetBytes("?");
+                udpClient.Send(sendBytes, sendBytes.Length);
+                Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
+              
+                udpClient.Close();
+                _socket.Close();
+
+            }
+            catch (SocketException e)
+            {
+                if (e.ErrorCode == 10054)
+                {
+                    MessageBox.Show("Error 10024");
+                }
+               
+            }
+            finally
+            {
+                MessageBox.Show("Connected");
+               
+            }
+
+        }
+```
+
 Also, to avoid any issues was used try catch blocks.
 
-I'm still dealing with server part. Have some issues with Socket. 
+![image](https://user-images.githubusercontent.com/24621285/56890799-2e350f00-6a83-11e9-8255-e42548ff4548.png)
 
-P.S. Is not that easy to integrate 2 protocols...
+These are still some issues with socket permissions.
 
 
