@@ -17,6 +17,7 @@ namespace Server
         private State state = new State();
         private EndPoint epFrom = new IPEndPoint(IPAddress.Any, 0);
         private AsyncCallback recv = null;
+        private UdpClient udpClient = null;
 
 
         public class State
@@ -26,10 +27,11 @@ namespace Server
 
         public void ServerUDP(string address, int port)
         {
+
             _socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
             var end = new IPEndPoint(IPAddress.Parse(address), port);
             _socket.Bind(end);
-          
+
             Receive();
         }
 
@@ -41,7 +43,7 @@ namespace Server
             {
                 State so = (State)ar.AsyncState;
                 int bytes = _socket.EndSend(ar);
-                MessageBox.Show("Sent Message");
+
             }, state);
         }
 
@@ -52,16 +54,36 @@ namespace Server
                 State so = (State)ar.AsyncState;
                 int bytes = _socket.EndReceiveFrom(ar, ref epFrom);
                 _socket.BeginReceiveFrom(so.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv, so);
-                MessageBox.Show("Received Message");
+
             }, state);
         }
 
-        public void Client(string address, int port)
+        public bool Client(string address, int port)
         {
-            _socket.Connect(IPAddress.Parse(address), port);
-            Receive();
+            try
+            {
+                udpClient = new UdpClient(port);
+                _socket.ReceiveTimeout = 5000;
+                _socket.Connect(IPAddress.Parse(address), port);
+                udpClient.Connect(IPAddress.Parse(address), port);
+                IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Parse(address), port);
+                Byte[] sendBytes = Encoding.ASCII.GetBytes("?");
+                udpClient.Send(sendBytes, sendBytes.Length);
+                Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
+            }
+            catch (SocketException e)
+            {
+                if (e.ErrorCode == 10054)
+                {
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
+
         }
-
-
     }
 }

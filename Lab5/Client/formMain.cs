@@ -21,6 +21,8 @@ namespace Client
         UDPSocket c = new UDPSocket();
         List<string> nowChatting = new List<string>();
         List<string> chat = new List<string>();
+       
+        public UdpClient udpClient = null;
 
         public void setName(String title)
         {
@@ -38,18 +40,9 @@ namespace Client
         {
                 try
                 {
-                try
-                {
-                    c.Client(ClientIPtextBox.Text, int.Parse(ClientPorttextBox.Text));
-                    c.Send("TEST!");
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Not Connected");
-                }
+               
 
-
-                if (!input.Text.Equals(""))
+                    if (!input.Text.Equals(""))
                     {
                         chat.Add("gChat");
                         chat.Add(input.Text);
@@ -74,18 +67,7 @@ namespace Client
             clientSocket = new TcpClient();
             IPEndPoint IpEnd = new IPEndPoint(IPAddress.Parse(ClientIPtextBox.Text), int.Parse(ClientPorttextBox.Text));
 
-            try
-            {
-                try
-                {
-                    c.Client(ClientIPtextBox.Text, int.Parse(ClientPorttextBox.Text));
-                    c.Send("TEST!");
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Not Connected");
-                }
-
+             
                 clientSocket.Connect(IpEnd);
                 readData = "Connected to Server ";
                 msg();
@@ -101,13 +83,46 @@ namespace Client
                 ctThread = new Thread(getMessage);
                 ctThread.Start();
 
-                UdpClient client = new UdpClient();
+                CheckConnection(IPAddress.Parse(ClientIPtextBox.Text), int.Parse(ClientPorttextBox.Text));
+
+            
+        }
+
+
+        public void CheckConnection(IPAddress address, int port)
+        {
+            Socket _socket = null;
+            try
+            {
+                udpClient = new UdpClient(port);
+                _socket = udpClient.Client;
+                _socket.SetSocketOption(SocketOptionLevel.Socket,SocketOptionName.Broadcast, 1);
+                _socket.ReceiveTimeout = 5000;
+                _socket.Connect(address, port);
+                udpClient.Connect(address, port);
+                IPEndPoint RemoteIpEndPoint = new IPEndPoint(address, port);
+                Byte[] sendBytes = Encoding.ASCII.GetBytes("?");
+                udpClient.Send(sendBytes, sendBytes.Length);
+                Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
+              
+                udpClient.Close();
+                _socket.Close();
 
             }
-            catch (Exception )
+            catch (SocketException e)
             {
-                MessageBox.Show("Server Not Started");
+                if (e.ErrorCode == 10054)
+                {
+                    MessageBox.Show("Error 10024");
+                }
+               
             }
+            finally
+            {
+                MessageBox.Show("Connected");
+               
+            }
+
         }
 
         public void getUsers(List<string> parts)
@@ -115,15 +130,7 @@ namespace Client
             
             this.Invoke((MethodInvoker)delegate
             {
-                try
-                {
-                    c.Client(ClientIPtextBox.Text, int.Parse(ClientPorttextBox.Text));
-                    c.Send("TEST!");
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Not Connected");
-                }
+               
                 listBox1.Items.Clear();
                 for (int i = 1; i < parts.Count; i++)
                 {
@@ -140,9 +147,7 @@ namespace Client
             
                 try
                 {
-                    c.Client(ClientIPtextBox.Text, int.Parse(ClientPorttextBox.Text));
-                    c.Send("TEST!");
-                MessageBox.Show(c.ToString());
+                    
                 while (true)
                     {
                        

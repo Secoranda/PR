@@ -57,9 +57,7 @@ namespace Server
     public async void startServer()
         {
             
-          // UDPSocket s = new UDPSocket();
-            //s.ServerUDP(ServerIPtextBox.Text, int.Parse(ServerPorttextBox.Text));
-        
+         
              listener =  new TcpListener(IPAddress.Any, int.Parse(ServerPorttextBox.Text));
             listener.Start();
             
@@ -205,7 +203,9 @@ namespace Server
 
         private void Private_Click(object sender, EventArgs e)
         {
-           // CheckConnection("192.168.1.24", int.Parse(ServerPorttextBox.Text));
+            //UDPSocket s = new UDPSocket();
+            //s.ServerUDP("192.168.1.24", 123);
+
             if (listBox1.SelectedIndex != -1)
             {
                 String clientName = listBox1.GetItemText(listBox1.SelectedItem);
