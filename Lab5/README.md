@@ -108,6 +108,7 @@ This aproach will have same result.
 
         }
 ```
+More [details](https://stackoverflow.com/questions/9265669/how-to-test-a-remote-udp-port) on checkking port.
 
 Also, to avoid any issues was used try catch blocks.
 
